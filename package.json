@@ -1,0 +1,27 @@
+{
+  "name": "flight-search-mcp-vercel",
+  "version": "1.0.0",
+  "description": "Flight search MCP server",
+  "main": "api/mcp.js",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc",
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "author": "baryayaya",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.4.0",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@vercel/node": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/baryayaya/flight-search-mcp.git"
+  }
+}
