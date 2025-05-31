@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   // GET request
   if (req.method === 'GET') {
     return res.status(200).json({
-      message: '✈️ Flight Search MCP Server is LIVE!',
+      message: '✈️ Flight Search MCP Server - FIXED VERSION!',      
       status: 'working',
       hebrew: 'השרת עובד בהצלחה!',
       timestamp: new Date().toISOString(),
