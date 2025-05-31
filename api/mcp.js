@@ -1,15 +1,44 @@
-export default function handler(req, res) {
+export default async function handler(req, res) {
+  // CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  // GET request
   if (req.method === 'GET') {
-    return res.json({
-      status: '✈️ Flight Search MCP Server - WORKING!',
-      message: 'השרת עובד!',
+    return res.status(200).json({
+      message: '✈️ Flight Search MCP Server is LIVE!',
+      status: 'working',
+      hebrew: 'השרת עובד בהצלחה!',
       timestamp: new Date().toISOString(),
-      tools: ['search_flights', 'get_jewish_holidays']
+      author: 'baryayaya',
+      version: '1.0.0'
     });
   }
-  
-  return res.json({ message: 'Server is running!' });
+
+  // POST request
+  if (req.method === 'POST') {
+    const { tool } = req.body || {};
+    
+    if (tool === 'search_flights') {
+      return res.status(200).json({
+        message: 'חיפוש טיסות מופעל!',
+        flights: [
+          { airline: 'אל על', price: 1200, route: 'JFK→TLV' },
+          { airline: 'Delta', price: 1100, route: 'JFK→TLV' }
+        ]
+      });
+    }
+
+    return res.status(200).json({
+      message: 'Server working!',
+      receivedTool: tool
+    });
+  }
+
+  return res.status(405).json({ error: 'Method not allowed' });
 }
